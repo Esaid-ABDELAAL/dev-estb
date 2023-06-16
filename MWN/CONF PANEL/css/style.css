@@ -1,0 +1,23 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  
+  h1 {
+    text-align: center;
+  }
+  
+  #xmlElements {
+    margin-bottom: 20px;
+  }
+  
+  .button-container {
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .button-container button {
+    padding: 10px 20px;
+    font-size: 16px;
+  }
+  

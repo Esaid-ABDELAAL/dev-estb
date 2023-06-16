@@ -82,7 +82,7 @@ function initMap() {
                 divTempsTrajet.classList.add('last-temps-trajet');
               }
               if (isFirstAdresse) {
-                divTempsTrajet.classList.add('second-temps-trajet');
+                divTempsTrajet.classList.add('first-temps-trajet');
                 isFirstAdresse = false; // Met à jour le flag après la première adresse
               }  
             }

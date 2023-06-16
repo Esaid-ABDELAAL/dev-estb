@@ -54,6 +54,8 @@ function initMap() {
       }
     });
   }
+  
+  let isFirstAdresse = true; // Variable pour suivre si c'est la première adresse
 
   function loadAddresses() {
     const xhr = new XMLHttpRequest();
@@ -70,10 +72,19 @@ function initMap() {
             
             adresses[destination] = valeur;
             
+
+
             if (destination !== 'depart') {
               const divTempsTrajet = document.createElement('div');
               divTempsTrajet.id = 'temps-trajet-' + destination;
               container.appendChild(divTempsTrajet);
+              if (i === adresseElements.length - 1) {
+                divTempsTrajet.classList.add('last-temps-trajet');
+              }
+              if (isFirstAdresse) {
+                divTempsTrajet.classList.add('second-temps-trajet');
+                isFirstAdresse = false; // Met à jour le flag après la première adresse
+              }  
             }
             else{
               depart = valeur;

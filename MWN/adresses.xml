@@ -15,12 +15,4 @@
     <destination>torcy</destination>
     <valeur>All. des Epinettes ZI Nord, Bâtiment 9, 77200 Torcy, France</valeur>
   </adresse>
-  <adresse>
-    <destination>aulnay</destination>
-    <valeur>rue de Corse, 93600 Aulnay-Sous-Bois, France</valeur>
-  </adresse>
-  <adresse>
-    <destination>tounsi</destination>
-    <valeur>rue Maurice Niles, 93600 Aulnay-Sous-Bois, France</valeur>
-  </adresse>
 </adresses>

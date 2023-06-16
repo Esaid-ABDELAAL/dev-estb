@@ -1,0 +1,315 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #303030;
+  text-align: center;
+}
+
+#carte {
+  height: 75%;
+  width: 75%;
+  border-radius: 25px;
+  position: absolute;
+  left: 0;
+  margin-left: 1.5%;
+  margin-top: 3%;
+}
+
+#ww_2e9fa8b41da1e {
+  position: absolute;
+  border-radius: 25px;
+  margin-top: 3%;
+  height: 250px;
+  right: 0;
+  top: 0;
+  margin-right: 1.5%;
+
+}
+
+.meteo {
+  width: 20%;
+  border-radius: 25px;
+  margin-top: 3%;
+  margin-right: 1.5%;
+  position: absolute;
+  right: 0;
+  
+}
+
+.fond-white {
+  background-color: white;
+  position: absolute;
+  border-radius: 25px;
+  width: 20%;
+  height: 350px;
+  bottom: 0;
+  margin-bottom: 10px;
+  right: 0;
+  margin-right: 1.5%;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  display: flex;
+}
+
+
+.titre-fenetre {
+  position: absolute;
+  text-align: center;
+  right: 60px;
+  bottom: 300px;
+  text-decoration: underline;
+
+}
+
+.nom-fenetre {
+  position: absolute;
+  text-align: center;
+  right: 40px;
+  top: 400px;
+  display: flex;
+  font-size: 19px;
+}
+
+
+
+.nom-fenetre-ouvert {
+  position: absolute;
+  text-align: center;
+  right: 80px;
+  top: 380px;
+  display: flex;
+  font-size: 28px;
+}
+
+
+
+
+.list-container {
+  color: #303030;
+  position: absolute;
+  right: 40px;
+  top: 390px;
+  font-size: 25px;
+
+}
+
+
+
+
+.led-box-vert {
+  height: 30px;
+  width: 25%;
+  margin: 10px 0;
+  position: absolute;
+  right: -70px;
+  top: 390px;
+  float: right;
+
+}
+
+.led-box-rouge {
+  height: 30px;
+  width: 25%;
+  margin: 10px 0;
+  position: absolute;
+  right: -60px;
+  top: 375px;
+  float: right;
+
+
+}
+
+
+.led-red {
+  width: 24px;
+  height: 24px;
+  background-color: #F00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 12px;
+  -webkit-animation: blinkRed 0.5s infinite;
+  -moz-animation: blinkRed 0.5s infinite;
+  -ms-animation: blinkRed 0.5s infinite;
+  -o-animation: blinkRed 0.5s infinite;
+  animation: blinkRed 0.5s infinite;
+
+}
+
+@-webkit-keyframes blinkRed {
+  from {
+    background-color: #F00;
+  }
+
+  50% {
+    background-color: #A00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+
+  to {
+    background-color: #F00;
+  }
+}
+
+@-moz-keyframes blinkRed {
+  from {
+    background-color: #F00;
+  }
+
+  50% {
+    background-color: #A00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+
+  to {
+    background-color: #F00;
+  }
+}
+
+@-ms-keyframes blinkRed {
+  from {
+    background-color: #F00;
+  }
+
+  50% {
+    background-color: #A00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+
+  to {
+    background-color: #F00;
+  }
+}
+
+@-o-keyframes blinkRed {
+  from {
+    background-color: #F00;
+  }
+
+  50% {
+    background-color: #A00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+
+  to {
+    background-color: #F00;
+  }
+}
+
+@keyframes blinkRed {
+  from {
+    background-color: #F00;
+  }
+
+  50% {
+    background-color: #A00;
+    box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #441313 0 -1px 9px, rgba(255, 0, 0, 0.5) 0 2px 0;
+  }
+
+  to {
+    background-color: #F00;
+  }
+}
+
+.led-green {
+  margin: 0 auto;
+  width: 24px;
+  height: 24px;
+  background-color: #22ff00;
+  border-radius: 50%;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 -1px 7px 1px, inset #304701 0 -1px 9px, #89FF00 0 2px 12px;
+  position: absolute;
+
+
+}
+
+#temps-trajets {
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 9%;
+  background-color: #ffffff;
+  border-radius: 0px 0px 25px 25px;
+  z-index: 1;
+  width: 75%;
+  display: flex;
+  margin-left: 21px;
+}
+
+#temps-trajet-1 {
+  width: 25%;
+  height: 100%;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background-color: #303030;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 2px;
+  border-radius: 0px 0px 0px 25px;
+  flex: 1;
+}
+
+#temps-trajet-2 {
+  width: 25%;
+  height: 100%;
+  margin-left: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background-color: #303030;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  flex: 1;
+}
+
+#temps-trajet-3 {
+  width: 25%;
+  height: 100%;
+  margin-left: 2px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  background-color: #303030;
+  color: #ffffff;
+  text-align: center;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-right: 2px;
+  border-radius: 0px 0px 25px 0px;
+  flex: 1;
+}
+.news {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: white;
+  height: 15%;
+  width: 75%;
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  color: black;
+  text-align: center;
+  overflow: hidden;
+}
+
+p{
+  top: 10px;
+}
+
+.article {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.article.active {
+  opacity: 1;
+}

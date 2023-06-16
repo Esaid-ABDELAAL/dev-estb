@@ -20,6 +20,9 @@ function initMap() {
     draggable: false
   });
 
+  var TrafficLayer = new google.maps.TrafficLayer();
+  TrafficLayer.setMap(map);
+
   function makeMarker(position, title) {
     const icons = {
       start: new google.maps.MarkerImage(

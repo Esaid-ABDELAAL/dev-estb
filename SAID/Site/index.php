@@ -19,11 +19,7 @@
 
     <div>
       <div id="carte"></div>
-      <div id="temps-trajets">
-        <div id="temps-trajet-1"></div>
-        <div id="temps-trajet-2"></div>
-        <div id="temps-trajet-3"></div>
-      </div>
+      <div id="temps-trajets"></div>
     </div>
 
     <div class="meteo">

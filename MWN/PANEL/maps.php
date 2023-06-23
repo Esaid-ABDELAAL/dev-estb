@@ -1,33 +1,45 @@
 <?php
-// Connexion à la base de données
-$servername = '192.168.0.166:33061';
-$username = 'root';
-$password = 'Bassem01!';
-$dbname = 'adresses';
+  // Connexion à la base de données
+  $servername = '192.168.0.166:33061';
+  $username = 'root';
+  $password = 'Bassem01!';
+  $dbname = 'adresses';
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-if ($conn->connect_error) {
-    die("Erreur de connexion à la base de données : " . $conn->connect_error);
-}
+  $conn = new mysqli($servername, $username, $password, $dbname);
 
-// Récupération des adresses depuis la base de données
-$query = "SELECT * FROM destinations";
-$result = $conn->query($query);
-if (!$result) {
-    die("Erreur lors de l'exécution de la requête : " . $conn->error);
-}
+  // Vérification de la connexion
+  if ($conn->connect_error) {
+    die('Erreur de connexion à la base de données : ' . $conn->connect_error);
+  }
 
-$adresses = [];
-while ($row = $result->fetch_assoc()) {
-    $adresses[] = [
-        'nom' => $row['nom'],
-        'valeur' => $row['valeur']
-    ];
-}
+  // Récupération des adresses depuis la base de données
+  $sql = 'SELECT * FROM destinations';
+  $result = $conn->query($sql);
 
-$conn->close();
+  $adresses = [];
+  if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+      $destination = $row['nom'];
+      $valeur = $row['valeur'];
+      if ($destination !== 'depart') {
+        $adresses[$destination] = $valeur;
+      } else {
+        $depart = $valeur;
+      }
+    }
+  }
 
-// Envoi des adresses au format JSON
-header('Content-Type: application/json');
-echo json_encode($adresses);
+  $conn->close();
 ?>
+
+<script>
+  // Passer les adresses depuis PHP à JavaScript
+  const adresses = <?php echo json_encode($adresses); ?>;
+  const depart = <?php echo json_encode($depart); ?>;
+  const centreCarte = { lat: 48.8566, lng: 2.3522 };
+
+  // Inclure le script JavaScript principal
+  const script = document.createElement('script');
+  script.src = 'js/commutes.js';
+  document.head.appendChild(script);
+</script>

@@ -1,63 +1,45 @@
-let depart;
-const adresses = [];
+// JavaScript code here
+function makeMarker(position, title) {
+  const icons = {
+    start: new google.maps.MarkerImage(
+      'https://maps.google.com/mapfiles/kml/shapes/schools_maps.png',
+      new google.maps.Size(44, 32),
+      new google.maps.Point(0, 0),
+      new google.maps.Point(22, 32)
+    )
+  };
 
-const centreCarte = { lat: 48.846389, lng: 2.586121 };
-
-function initMap() {
-  const directionsService = new google.maps.DirectionsService();
-  const map = new google.maps.Map(document.getElementById('carte'), {
-    center: centreCarte,
-    zoom: 11,
-    mapTypeId: 'roadmap',
-    panControl: false,
-    zoomControl: false,
-    fullscreenControl: false,
-    scaleControl: false,
-    overviewMapControl: false,
-    streetViewControl: false,
-    mapTypeControl: false,
-    draggable: false
+  new google.maps.Marker({
+    position: position,
+    map: map,
+    icon: icons.start,
+    title: title
   });
+}
 
-  function makeMarker(position, title) {
-    const icons = {
-      start: new google.maps.MarkerImage(
-        'https://maps.google.com/mapfiles/kml/shapes/schools_maps.png',
-        new google.maps.Size(44, 32),
-        new google.maps.Point(0, 0),
-        new google.maps.Point(22, 32)
-      )
-    };
+function codeAddress() {
+  const geocoder = new google.maps.Geocoder();
+  geocoder.geocode({ 'address': depart }, function (results, status) {
+    if (status == 'OK') {
+      const depart_latlng = { lat: results[0].geometry.location.lat(), lng: results[0].geometry.location.lng() };
+      const marker_depart = new google.maps.Marker({
+        position: depart_latlng,
+        map: map,
+        title: "depart",
+        icon: {
+          url: "http://maps.google.com/mapfiles/ms/icons/rangerstation.png"
+        }
+      });
+    }
+  });
+}
 
-    new google.maps.Marker({
-      position: position,
-      map: map,
-      icon: icons.start,
-      title: title
-    });
-  }
-
-  function loadAddresses() {
-    // Récupération des adresses depuis PHP
-    const adressesFromPHP = <?php echo json_encode($adresses); ?>;
-    depart = adressesFromPHP.find(a => a.nom === 'depart').valeur;
-
-    // Stockage des adresses dans le tableau adresses
-    adressesFromPHP.forEach(a => {
-      if (a.nom !== 'depart') {
-        adresses.push(a.valeur);
-      }
-    });
-
-    // Calcul des temps de trajet
-    calculerTempsTrajet(depart);
-  }
-
-  function calculerTempsTrajet(adresseDepart) {
-    adresses.forEach(destination => {
+function calculerTempsTrajet(adresseDepart) {
+  for (const destination in adresses) {
+    if (destination !== 'depart') {
       const request = {
         origin: adresseDepart,
-        destination: destination,
+        destination: adresses[destination],
         drivingOptions: {
           departureTime: new Date(Date.now() + 10000),
           trafficModel: 'bestguess'
@@ -84,9 +66,23 @@ function initMap() {
           makeMarker(leg, destination);
         }
       });
-    });
+    }
   }
+}
 
-  // Appeler la fonction pour charger les adresses depuis PHP
-  loadAddresses();
+function initMap() {
+  const directionsService = new google.maps.DirectionsService();
+  const map = new google.maps.Map(document.getElementById('carte'), {
+    center: centreCarte,
+    zoom: 11,
+    mapTypeId: 'roadmap',
+    panControl: false,
+    zoomControl: false,
+    fullscreenControl: false,
+    scaleControl: false,
+    streetViewControl: false
+  });
+
+  codeAddress();
+  calculerTempsTrajet(adresses.depart);
 }

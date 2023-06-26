@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-
-  <link rel="stylesheet" href="/SAID/Site/css/style.css">
-  <!-- <link rel="stylesheet" href="/SAID/Site/css/weather.css"> -->
-
-<!-- <link rel="stylesheet" href="css/weather.css"> -->
+  <link rel="stylesheet" href="css/style.css">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAihZVAGDDEJNemwTWXvP7DTfnWYr4le4E&libraries=places"></script>
   <script src="js/maps.js"></script>
   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAihZVAGDDEJNemwTWXvP7DTfnWYr4le4E&callback=initMap"></script>
@@ -13,56 +9,46 @@
 </head>
 <body>
   <main>
-
     <div class="container">
-      <div  class="search-box">
-          <i class="fa-solid fa-location-dot"></i>
-          <div id="cityOutput"></div>
+        <div  class="search-box">
+            <i class="fa-solid fa-location-dot"></i>
+            <div id="cityOutput"></div>
+        </div>
+  
+        <div class="not-found">
+            <img src="images/404.png">
+            <p>Oops! Invalid location :/</p>
+        </div>
+  
+        <div class="weather-box">
+            <img src="">
+            <p class="temperature"></p>
+            <p class="description"></p>
+        </div>
+  
+        <div class="weather-details"></div>
+    </div>
+  
+      <div>
+        <div id="carte"></div>
+        <div id="temps-trajets"></div>
       </div>
-
-      <div class="not-found">
-          <img src="images/404.png">
-          <p>Oops! Invalid location :/</p>
-      </div>
-
-      <div class="weather-box">
-          <img src="">
-          <p class="temperature"></p>
-          <p class="description"></p>
-      </div>
-
-      <div class="weather-details"></div>
-          
-</div>
-
-  </div>
-
-    <!-- <div>  
-      <div id="carte"></div>
-      <div id="temps-trajets">
-        <div id="temps-trajet-1"></div>
-        <div id="temps-trajet-2"></div>
-        <div id="temps-trajet-3"></div>
-      </div>
-     </div> -->
-
-
-
+  
       <div class="fond-white"></div>
-        
-      
-
-      <!-- <h2 class="titre-fenetre">Information fenêtres </h2> -->
-
-      <div class="news"></div>
-
-
-  </main>
-  <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
-  <script src="js/weather.js"></script>
-  <script src="/SAID/Site/js/weather.js"></script>
-
+  
+        <!-- <h2 class="titre-fenetre">Information fenêtres </h2> -->
+  
+        <div class="news"></div>
+  
+  
+    </main>
+  
 
 </body>
+
+<script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+
+<script src="js/weather.js"></script>
+
 </html>
- 
+

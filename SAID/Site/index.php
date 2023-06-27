@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
   <script
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAihZVAGDDEJNemwTWXvP7DTfnWYr4le4E&libraries=places"></script>
@@ -11,30 +12,80 @@
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAihZVAGDDEJNemwTWXvP7DTfnWYr4le4E&callback=initMap"></script>
   <link rel="stylesheet" type="text/css" href="css/style.css" />
   <script type="" src="/js/maps.js"></script>
+
 </head>
 
 <body>
 
   <main>
+  <div class="container">
+      <div  class="search-box">
+          <i class="fa-solid fa-location-dot"></i>
+          <div id="cityOutput"></div>
+      </div>
+
+      <div class="not-found">
+          <img src="images/404.png">
+          <p>Oops! Invalid location :/</p>
+      </div>
+
+      <div class="weather-box">
+          <img src="">
+          <p class="temperature"></p>
+          <p class="description"></p>
+      </div>
+
+      <div class="weather-details">
+            <div class="humidity">
+                <i class="fa-solid fa-water"></i>
+                <div class="text">
+                    <span></span>
+                    <p>Humidité</p>
+                </div>
+            </div>
+            <div class="wind">
+                <i class="fa-solid fa-wind"></i>
+                <div class="text">
+                    <span></span>
+                    <p>Vitesse du vent</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+ <div class="container_small">
+      <div  class="search-box_small">
+          <i class="fa-solid fa-location-dot"></i>
+          <div id="cityOutput_small"></div>
+      </div>
+
+      <div class="not-found_small">
+          <img src="images/404.png">
+          <p>Oops! Invalid location :/</p>
+      </div>
+
+      <div class="weather-box_small">
+          <img src="">
+          <p class="temperature_small"></p>
+          <p class="description_small"></p>
+      </div>
+
+      <div class="weather-details_small"></div>
+          
+</div> 
+
 
     <div>
       <div id="carte"></div>
       <div id="temps-trajets"></div>
     </div>
 
-    <div class="meteo">
-      <div id="ww_2e9fa8b41da1e" v='1.3' loc='id'a='{"t":"horizontal","lang":"fr","sl_lpl":1,"ids":[],"font":"Arial","sl_ics":"one_a","sl_sot":"celsius","cl_bkg":"image","cl_font":"#FFFFFF","cl_cloud":"#FFFFFF","cl_persp":"#81D4FA","cl_sun":"#FFC107","cl_moon":"#FFC107","cl_thund":"#FF5722"}'><a href="https://meteolabs.fr/widgets/" id="ww_2e9fa8b41da1e_u" target="_blank">Widget météo gratuit</a></div>
-      <script async src="https://app1.weatherwidget.org/js/?id=ww_2e9fa8b41da1e"></script>
-      </div>
 
 
-
-      <div class="fond-white">
         
       </div>
-
-      <h2 class="titre-fenetre">Information fenêtres </h2>
-
       <div class="news"></div>
 
 
@@ -42,16 +93,22 @@
   </main>
 
 </body>
-<?php include 'fenetre.php';
+<?php 
 include 'news.php';
+
+include 'fenetre.php';
 
 ?>
 
 
  <script
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAihZVAGDDEJNemwTWXvP7DTfnWYr4le4E&callback=initMap&v=weekly"
-  defer></script> 
-  <script async src="https://app1.weatherwidget.org/js/?id=ww_2e9fa8b41da1e"></script>
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAihZVAGDDEJNemwTWXvP7DTfnWYr4le4E&callback=initMap&v=weekly"defer></script> 
+  <script src="https://kit.fontawesome.com/7c8801c017.js" crossorigin="anonymous"></script>
+  
+  
+  <script src="js/weather-small.js"></script>
+
+  <script src="js/weather.js"></script>
 
 </body>
 </html>

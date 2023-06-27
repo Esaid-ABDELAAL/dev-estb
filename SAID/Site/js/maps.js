@@ -1,4 +1,5 @@
 let depart;
+
 const adresses = {};
 
 const centreCarte = { lat: 48.846389, lng: 2.586121 };
@@ -18,9 +19,6 @@ function initMap() {
     mapTypeControl: false,
     draggable: false
   });
-
-  var TrafficLayer = new google.maps.TrafficLayer();
-  TrafficLayer.setMap(map);
 
   function makeMarker(position, title) {
     const icons = {
@@ -73,6 +71,8 @@ function initMap() {
             const valeur = adresseElements[i].getElementsByTagName("valeur")[0].textContent;
             
             adresses[destination] = valeur;
+            
+
 
             if (destination !== 'depart') {
               const divTempsTrajet = document.createElement('div');
@@ -82,7 +82,7 @@ function initMap() {
                 divTempsTrajet.classList.add('last-temps-trajet');
               }
               if (isFirstAdresse) {
-                divTempsTrajet.classList.add('first-temps-trajet');
+                divTempsTrajet.classList.add('second-temps-trajet');
                 isFirstAdresse = false; // Met à jour le flag après la première adresse
               }  
             }
@@ -100,52 +100,44 @@ function initMap() {
   }
 
   function calculerTempsTrajet(adresseDepart) {
-    const date = new Date();
-    const heureActuelle = date.getHours();
+    for (const destination in adresses) {
+      if (destination !== 'depart') {
+        const request = {
+          origin: adresseDepart,
+          destination: adresses[destination],
+          drivingOptions: {
+            departureTime: new Date(Date.now() + 10000),
+            trafficModel: 'bestguess'
+          },
+          travelMode: 'DRIVING'
+        };
 
-    if (heureActuelle >= 8 && heureActuelle <= 18) {
-      for (const destination in adresses) {
-        if (destination !== 'depart') {
-          const request = {
-            origin: adresseDepart,
-            destination: adresses[destination],
-            drivingOptions: {
-              departureTime: new Date(Date.now() + 10000),
-              trafficModel: 'bestguess'
-            },
-            travelMode: 'DRIVING'
-          };
+        const renderer = new google.maps.DirectionsRenderer({ suppressMarkers: true });
+        renderer.setMap(map);
 
-          const renderer = new google.maps.DirectionsRenderer({ suppressMarkers: true });
-          renderer.setMap(map);
-
-          directionsService.route(request, function (response, status) {
-            if (status === 'OK') {
-              renderer.setDirections(response);
-              renderer.setOptions({
-                preserveViewport: true
-              });
-              const tempsTrajet = response.routes[0].legs[0].duration_in_traffic.text;
-              const destinationId = 'temps-trajet-' + destination;
-              const destinationElement = document.getElementById(destinationId);
-              if (destinationElement) {
-                destinationElement.innerHTML = "Temps de trajet vers " + destination + " : " + tempsTrajet;
-              }
-              const leg = response.routes[0].legs[0].end_location;
-              makeMarker(leg, destination);
+        directionsService.route(request, function (response, status) {
+          if (status === 'OK') {
+            renderer.setDirections(response);
+            renderer.setOptions({
+              preserveViewport: true
+            });
+            const tempsTrajet = response.routes[0].legs[0].duration_in_traffic.text;
+            const destinationId = 'temps-trajet-' + destination;
+            const destinationElement = document.getElementById(destinationId);
+            if (destinationElement) {
+              destinationElement.innerHTML = "Temps de trajet vers " + destination + " : " + tempsTrajet;
             }
-          });
-        }
+            const leg = response.routes[0].legs[0].end_location;
+            makeMarker(leg, destination);
+          }
+        });
       }
     }
-
-    setTimeout(function() {F
-      calculerTempsTrajet(adresseDepart);
-    }, 10 * 60 * 1000); // Rafraîchit toutes les 10 minutes
   }
 
   // Appeler la fonction pour charger les adresses depuis le fichier XML
   loadAddresses();
 
   // Appeler la fonction pour afficher le marqueur de l'adresse de départ
+  
 }

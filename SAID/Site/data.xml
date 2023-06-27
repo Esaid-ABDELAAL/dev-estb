@@ -4,14 +4,14 @@
         <ip>"192.168.0.120"</ip>
         <local_key>"$u@kp.w2j(*H1?W_"</local_key>
         <version>3.3</version>
-        <status>ouvert</status>
+        <status>fermer</status>
     </device>
     <device id="2">
         <dev_id>"Fenetre salle de réunion"</dev_id>
         <ip>"192.168.0.122"</ip>
         <local_key>"$u@kp.sh(*H1?W_"</local_key>
         <version>3.3</version>
-        <status>femer</status>
+        <status>fermer</status>
     </device>
     <device id="3">
         <dev_id>"Fenetre salle info"</dev_id>

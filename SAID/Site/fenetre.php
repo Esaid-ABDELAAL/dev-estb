@@ -1,45 +1,32 @@
+
 <?php
-$serveur = "192.168.0.166";
-$port = 33061;
-$utilisateur = "root";
-$motDePasse = "Bassem01!";
-$baseDeDonnees = "doorsensors";
 
-// Connexion à la base de données MySQL
-$connexion = new mysqli($serveur, $utilisateur, $motDePasse, $baseDeDonnees, $port);
 
-// Vérification de la connexion
-if ($connexion->connect_error) {
-    die("Erreur de connexion à la base de données: " . $connexion->connect_error);
+$fichier = 'data.xml';
+$contenu = simplexml_load_file($fichier);
+
+$portesOuvertes = array();
+foreach ($contenu as $device) {
+  'ID: ' . $device->dev_id . ' | IP: ' . $device->ip . ' | Local Key: ' . $device->local_key . ' | Version: ' . $device->version . ' | Status: ' . $device->status . '<br>';
+
+  if ($device->status == 'ouvert') {
+    $portesOuvertes[] = $device->dev_id;
+  }
 }
 
-// Requête SQL pour récupérer les données de la table "devices"
-$sql = "SELECT * FROM devices";
-$resultat = $connexion->query($sql);
+if (!empty($portesOuvertes)) {
+  echo '<div class="list-container">';
+  echo '<ul>';
+  foreach ($portesOuvertes as $fenetre) {
+    echo '<li>' . str_replace('"', '', $fenetre) . '</li>';
+  }
+  echo '</ul>';
+  echo '</div>';
+  echo '<div class="nom-fenetre-ouvert">Fenêtre ouverte : </div>';
+  echo '<div class="led-box-rouge"><div class="led-red"></div></div>';
 
-// Variable pour suivre si une fenêtre est ouverte
-$fenetreOuverte = false;
-
-while ($row = mysqli_fetch_assoc($resultat)) {
-    if ($row["status"] == "ouvert") {
-        $fenetreOuverte = true;
-        echo '<div class="nom-fenetre">Fenêtre ouverte : </div>';
-        echo '<div class="fond-white">';
-        echo $row["name"] . '<br>';
-    }
-}
-
-
-
-
-if ($fenetreOuverte) {
-    echo '</div>';
-    echo "<script>document.querySelector('.container').style.display = 'none' ;</script>";
 } else {
-    echo "<script>document.querySelector('.container_small').style.display = 'none' ;</script>";
-    echo '<div class="fond-white""></div>';
+  echo '<div class="nom-fenetre">Aucune fenêtre n\'est ouverte.</div>';
+  echo '<div class="led-box-vert"><div class="led-green"></div></div>';
 }
-
-// Fermeture de la connexion à la base de données
-$connexion->close();
 ?>

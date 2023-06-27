@@ -31,15 +31,11 @@ $totalArticles = count($contenu->channel->item);
         border-radius: 20px;
         color: black;
         text-align: center;
+        overflow: hidden;
     }
 
     p{
         top: 10px;
-    }
-
-    h2{
-        size: 22px;
-        font-size: 23px;
     }
 
     .article {
@@ -65,14 +61,10 @@ $totalArticles = count($contenu->channel->item);
             articles[currentIndex].classList.remove('active');
             currentIndex = (currentIndex + 1) % articles.length;
             articles[currentIndex].classList.add('active');
-            setTimeout(showNextArticle, 10000); 
+            setTimeout(showNextArticle, 1000); 
         }
 
         articles[currentIndex].classList.add('active');
-        setTimeout(showNextArticle, 10000); 
+        setTimeout(showNextArticle, 1000); 
     })();
-
-    console.log(`${articles} ${str.length}`);
-
-</script>
 </script>
